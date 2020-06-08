@@ -78,5 +78,37 @@ public class Test<T> {
 		collectionFunctions.print(
 				Collections.singletonList(ofNullable(collectionFunctions.smallest(INTEGER_LIST, 5))
 						.get().orElse(Collections.singletonList("Invalid Process"))));
+
+		System.out.println("#####################");
+		try {
+			collectionFunctions.print(
+					collectionFunctions.merge(LARGEST_2_PEOPLE,LARGEST_2_PEOPLE));
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("----------------------");
+		collectionFunctions.print(
+				collectionFunctions.merge2(LARGEST_2_PEOPLE,LARGEST_2_PEOPLE));
+
+		System.out.println("*****************");
+		ReverseMap<Integer,String> reverseMap = new ReverseMap<>();
+		reverseMap.put(123, "Murat");
+		reverseMap.put(234, "Cemil");
+		reverseMap.put(345, "Mehmet");
+		reverseMap.put(456, "Ferdi");
+
+
+		System.out.println(reverseMap.getLeft("Cemil"));
+		System.out.println(reverseMap.getRight(456));
+		collectionFunctions.print(reverseMap.leftValues());
+		collectionFunctions.print(reverseMap.rightValues());
+		System.out.println("Size : "+reverseMap.size());
+		reverseMap.clear();
+		collectionFunctions.print(reverseMap.leftValues());
+		collectionFunctions.print(reverseMap.rightValues());
+
 	}
 }

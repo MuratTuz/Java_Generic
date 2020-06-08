@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CollectionFunctions<T> {
+public class CollectionFunctions<T, E> {
 
     public List<T> mergeToList(Collection<T> coll1, Collection<T> coll2){
         List<T> mergedList = new ArrayList<>();
@@ -46,5 +46,22 @@ public class CollectionFunctions<T> {
         return Optional.of(coll.stream().sorted().limit(nbr).collect(Collectors.toList()));
     }
 
+    <E, C extends Collection<E>> C merge(C coll1, C coll2) throws IllegalAccessException, InstantiationException {
+       List<E> newList = new ArrayList<>();
+       newList.addAll(coll1); newList.addAll(coll2);
+
+
+       //   return (C) coll1.getClass().newInstance(); error since coll1 and coll2 are representation classes. not real.
+       //return yeni; error the same reason as above
+
+      return (C) newList;
+    }
+
+    <C> Collection merge2(Collection<C> coll1, Collection<C> coll2){
+        List newList = new ArrayList<>();
+        newList.addAll(coll1); newList.addAll(coll2);
+
+        return newList;
+    }
 }
 
